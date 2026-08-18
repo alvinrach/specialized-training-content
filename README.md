@@ -13,3 +13,107 @@ This is not an officially supported Google product. Usage of Google Cloud produc
 All the code in this repo is licensed under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License [here](https://www.apache.org/licenses/LICENSE-2.0).
 
 *Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License*
+
+## Step
+
+### Task 1. Set up your development environment and review the agent
+
+```
+git clone https://github.com/alvinrach/specialized-training-content.git
+cd specialized-training-content
+```
+
+```
+cd courses/build_production_ready_agents/ch2_lab/
+uv venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
+```
+
+```
+cloudshell workspace .
+```
+
+### Task 2: Launch your servers
+
+```
+touch .env
+edit .env
+```
+
+Paste to .env
+```
+APP_NAME="adk_agent_app"
+GOOGLE_CLOUD_PROJECT="qwiklabs-gcp-02-b0e7308008c3"
+GOOGLE_CLOUD_LOCATION="global"
+AGENT_RUNTIME_LOCATION="us-central1"
+SESSION_SERVICE_PROVIDER="in_memory"
+MEMORY_SERVICE_PROVIDER="in_memory"
+REASONING_ENGINE_APP_NAME="reasoning_engine_app"
+DATABASE_URL="postgresql+asyncpg://adk:qwiklabs-gcp-02-b0e7308008c3-pass@localhost:5432/adk_sessions"
+
+GOOGLE_GENAI_USE_VERTEXAI=TRUE
+```
+
+```
+python sessions_server.py
+```
+
+in another terminal
+```
+cd ~/specialized-training-content/courses/build_production_ready_agents/ch2_lab/
+python client_server.py
+```
+
+open server & then client
+
+### Task 3. Test the InMemorySessionService implementation
+```
+Hello
+```
+To the chat
+
+```
+Please tell me about Google Cloud Run
+```
+
+```
+Actually, I learn better if things are laid out like this:
+
+1. Starting with a simple example scenario
+2. Showing how to apply the concept to that scenario
+3. Explaining why it works
+4. Including a diagram
+5. Defining any specialized terms
+6. Availability
+
+I learn best by seeing concepts applied to realistic situations.
+
+Can you please re-address the question with this feedback in mind?
+```
+
+```
+Tell me about BigQuery
+```
+
+See, it follows. But open new session, then
+```
+Tell me about Google Cloud Storage
+```
+
+It fails to follow
+
+Another thing, try restart
+```
+python sessions_server.py
+```
+
+And
+```
+Please explain TPUs
+```
+
+It will
+![alt text](image.png)
+
+Session data has lost. Next we'll learn how to make it saved.

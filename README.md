@@ -164,6 +164,9 @@ Can you give me an example scenario and how it would be used?
 
 ### Task 5. Test memory with the InMemoryMemoryService implementation
 
+Watch:
+![alt text](image-2.png)
+
 Use this .env
 
 | **Variable**                 | **Old Value**          | **New Value**                                       |

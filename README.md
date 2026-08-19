@@ -162,3 +162,43 @@ Restart again python sessions_server.py, but dont refresh the web page (why? thi
 Can you give me an example scenario and how it would be used?
 ```
 
+### Task 5. Test memory with the InMemoryMemoryService implementation
+
+Use this .env
+
+| **Variable**                 | **Old Value**          | **New Value**                                       |
+| ---------------------------- | ---------------------- | --------------------------------------------------- |
+| `SESSION_SERVICE_PROVIDER`   | `vertex`            | `in_memory`                                            |
+| `REASONING_ENGINE_APP_NAME`  | `reasoning_engine_app` | *value copied from the Agent Runtime script output* |
+
+
+```
+python memory_server.py
+```
+
+```
+I learn best if things are laid out like this:
+
+1. Starting with a simple example scenario
+2. Showing how to apply the concept to that scenario
+3. Explaining why it works
+4. Including a diagram
+5. Defining any specialized terms
+6. Availability
+
+I prefer seeing concepts applied to realistic situations.
+```
+
+```
+Tell me about the Gemini model and API
+```
+
+now open new session on the chat and
+
+```
+Tell me about VPC Networks
+```
+
+Now its on the same format, it remembers the previous session
+
+

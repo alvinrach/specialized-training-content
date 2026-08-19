@@ -117,3 +117,48 @@ It will
 ![alt text](image.png)
 
 Session data has lost. Next we'll learn how to make it saved.
+
+### Task 4. Update the application to use the VertexAiSessionService implementation
+
+Open sessions_server.py and watch this:
+
+![alt text](image-1.png)
+
+Add third terminal
+
+```
+cd ~/specialized-training-content/courses/build_production_ready_agents/ch2_lab/scripts
+export GOOGLE_CLOUD_PROJECT=qwiklabs-gcp-01-f270072861b4
+uv venv
+source .venv/bin/activate
+uv pip install google-cloud-aiplatform==1.139.0 google-adk==1.26.0
+python setup_agentruntime.py
+```
+
+And on STUDENT TASK: Add the VertexSessionService implementation, append before logging
+```
+    from google.adk.sessions import VertexAiSessionService
+    session_service = VertexAiSessionService(project=GOOGLE_CLOUD_PROJECT, location=AGENT_RUNTIME_LOCATION)
+    APP_NAME = os.getenv("REASONING_ENGINE_APP_NAME", "reasoning_engine_app")  
+```
+
+Use this .env
+
+| **Variable**                 | **Old Value**          | **New Value**                                       |
+| ---------------------------- | ---------------------- | --------------------------------------------------- |
+| `SESSION_SERVICE_PROVIDER`   | `in_memory`            | `vertex`                                            |
+| `REASONING_ENGINE_APP_NAME`  | `reasoning_engine_app` | *value copied from the Agent Runtime script output* |
+
+
+Restart python sessions_server.py
+
+```
+Tell me about GKE
+```
+
+Restart again python sessions_server.py, but dont refresh the web page (why? this is only to provide session, not database)
+
+```
+Can you give me an example scenario and how it would be used?
+```
+

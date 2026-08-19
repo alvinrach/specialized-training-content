@@ -56,7 +56,9 @@ if SESSION_SERVICE_PROVIDER == "in_memory":
     session_service = InMemorySessionService()
     logger.info(f"Using SESSION_SERVICE_PROVIDER: {SESSION_SERVICE_PROVIDER}")
 elif SESSION_SERVICE_PROVIDER == "vertex":
-    # STUDENT TASK: Add VertexSessionService implementation
+    from google.adk.sessions import VertexAiSessionService
+    session_service = VertexAiSessionService(project=GOOGLE_CLOUD_PROJECT, location=AGENT_RUNTIME_LOCATION)
+    APP_NAME = os.getenv("REASONING_ENGINE_APP_NAME", "reasoning_engine_app")  
     logger.info(f"Using SESSION_SERVICE_PROVIDER: {SESSION_SERVICE_PROVIDER}")
 elif SESSION_SERVICE_PROVIDER == "db":
     # STUDENT TASK: Add DatabaseSessionService implementation

@@ -201,4 +201,33 @@ Tell me about VPC Networks
 
 Now its on the same format, it remembers the previous session
 
+### Task 6: Update server to use VertexAiMemoryBankService implementation
+
+Use this .env
+
+| **Variable**                 | **Old Value**          | **New Value**                                       |
+| ---------------------------- | ---------------------- | --------------------------------------------------- |
+| `MEMORY_SERVICE_PROVIDER`   | `in_memory`            | `vertex`                                            |
+| `REASONING_ENGINE_APP_NAME`  | `reasoning_engine_app` | *value copied from the Agent Runtime script output* |
+
+start memory_server.py
+
+```
+I learn best if things are laid out like this:
+
+1. Starting with a simple example scenario
+2. Showing how to apply the concept to that scenario
+3. Explaining why it works
+4. Including a diagram
+5. Defining any specialized terms
+6. Availability
+
+I prefer seeing concepts applied to realistic situations.
+```
+
+restart memory_server.py
+
+```
+Please teach me about Colab Enterprise
+```
 

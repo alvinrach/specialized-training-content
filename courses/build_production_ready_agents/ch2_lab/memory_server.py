@@ -74,6 +74,14 @@ if MEMORY_SERVICE_PROVIDER == "in_memory":
     logger.info(f"Using MEMORY_SERVICE_PROVIDER: {MEMORY_SERVICE_PROVIDER}")
 elif MEMORY_SERVICE_PROVIDER == "vertex":
     # STUDENT TASK: Add VertexAiMemoryBankService implementation
+    from google.adk.memory import VertexAiMemoryBankService
+    agent_engine_name=os.getenv("REASONING_ENGINE_APP_NAME", "reasoning_engine_app")
+    agent_engine_id = agent_engine_name.split("/")[-1]
+    memory_service = VertexAiMemoryBankService(
+        project=GOOGLE_CLOUD_PROJECT, 
+        location=AGENT_RUNTIME_LOCATION,
+        agent_engine_id=agent_engine_id
+    )
     logger.info(f"Using MEMORY_SERVICE_PROVIDER: {MEMORY_SERVICE_PROVIDER}")
 
 

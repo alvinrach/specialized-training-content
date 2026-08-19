@@ -62,6 +62,8 @@ elif SESSION_SERVICE_PROVIDER == "vertex":
     logger.info(f"Using SESSION_SERVICE_PROVIDER: {SESSION_SERVICE_PROVIDER}")
 elif SESSION_SERVICE_PROVIDER == "db":
     # STUDENT TASK: Add DatabaseSessionService implementation
+    from google.adk.sessions import DatabaseSessionService
+    session_service = DatabaseSessionService(db_url=DATABASE_URL)
     logger.info(f"Using SESSION_SERVICE_PROVIDER: {SESSION_SERVICE_PROVIDER}")
 else:
     logger.error(f"Unsupported SESSION_SERVICE_PROVIDER: {SESSION_SERVICE_PROVIDER}")

@@ -234,3 +234,78 @@ restart memory_server.py
 Please teach me about Colab Enterprise
 ```
 
+### Task 7. Modify the application to use the DatabaseSessionService implementation
+
+On new terminal
+
+```
+cd ~/specialized-training-content/courses/build_production_ready_agents/ch2_lab/postgres
+docker build -t my-postgres .
+docker run -d --name postgres-container -p 5432:5432 -e POSTGRES_PASSWORD=qwiklabs-gcp-01-f270072861b4-pass   my-postgres
+```
+
+Change this .env
+
+| **Variable**                 | **Old Value**          | **New Value**                                       |
+| ---------------------------- | ---------------------- | --------------------------------------------------- |
+| `SESSION_SERVICE_PROVIDER`   | `in_memory`            | `db`                                            |
+
+
+sessions_server.py
+```
+from google.adk.sessions import DatabaseSessionService
+session_service = DatabaseSessionService(db_url=DATABASE_URL)
+```
+
+```
+uv pip install "sqlalchemy[asyncio]"
+python sessions_server.py
+```
+
+```
+Tell me about Cloud Storage
+```
+
+```
+Give me three examples of its use
+```
+
+In the fourth terminal we build we can inspect database 
+```
+psql postgresql://adk:qwiklabs-gcp-01-f270072861b4-pass@localhost:5432/adk_sessions
+```
+
+```
+\dt
+```
+
+```
+SELECT
+    CASE
+        WHEN LENGTH(s.id::text) > 15 THEN SUBSTRING(s.id::text, 1, 15) || '...'
+        ELSE s.id::text
+    END AS session_id,
+    CASE
+        WHEN LENGTH(e.id::text) > 15 THEN SUBSTRING(e.id::text, 1, 15) || '...'
+        ELSE e.id::text
+    END AS event_id,
+    e.timestamp,
+    SUBSTRING((e.event_data - 'id')::text, 1, 100) AS event_data_preview
+FROM
+    sessions s
+JOIN
+    events e ON s.id = e.session_id;
+```
+
+```
+\a
+\t
+SELECT
+    s.id AS session_id,
+    e.id AS event_id,
+    e.timestamp,
+    jsonb_pretty(e.event_data - 'id') AS event_data
+FROM sessions s
+JOIN events e ON s.id = e.session_id
+ORDER BY e.timestamp \gx
+```
